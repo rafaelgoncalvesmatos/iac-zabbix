@@ -1,0 +1,13 @@
+---
+# Banco de Dados
+    - name: Create users
+      mysql_user:
+        name: zabbix
+        password: zabbix
+        priv: '*.*:ALL'
+        state: present
+
+    - name: Create Database zabbix
+      mysql_db:
+        name: zabbix
+        state: present

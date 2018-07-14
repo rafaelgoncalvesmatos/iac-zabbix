@@ -1,0 +1,7 @@
+---
+# handlers file for mysql
+- name: restart mysql
+  systemd:
+    name: mysqld
+    state: started
+    enabled: yes    

@@ -1,0 +1,21 @@
+---
+    - name: Install HTTPD
+      yum:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      with_items:
+        - httpd
+      notify:
+        - restart apache        
+
+#    - name: Start Service
+#      service:
+#        name: "{{ item }}"
+#        enabled: yes
+#        state: started
+#      with_items:
+#        - httpd
+#      notify:
+#        - restart apache
+

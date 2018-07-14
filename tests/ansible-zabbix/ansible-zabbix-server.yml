@@ -1,0 +1,25 @@
+---
+- hosts: zabbix-server
+  become: True
+  roles:
+    - role: httpd
+    - role: mysql
+    - role: zabbix-server
+    - role: zabbix-agentd
+  tasks:
+    - name: Enable Services
+      service:
+        name: "{{ item }}"
+        enabled: yes
+      with_items:
+        - mysqld
+        - httpd
+        - zabbix-server
+
+    - name: Enable Services Agent
+      service:
+        name: "{{ item }}"
+        enabled: yes
+      with_items:
+        - zabbix-agent
+      tags: agent

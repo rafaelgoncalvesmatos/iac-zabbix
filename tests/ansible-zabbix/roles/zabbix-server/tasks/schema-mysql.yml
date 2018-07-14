@@ -1,0 +1,16 @@
+
+    - name: Import SQL Schema Files
+      mysql_db:
+        name: zabbix
+        state: import
+        target: /usr/share/doc/zabbix-server-mysql-2.4.8/create/schema.sql
+    - name: Import SQL Images Files
+      mysql_db:
+        name: zabbix
+        state: import
+        target: /usr/share/doc/zabbix-server-mysql-2.4.8/create/images.sql
+    - name: Import SQL Data Files
+      mysql_db:
+        name: zabbix
+        state: import
+        target: /usr/share/doc/zabbix-server-mysql-2.4.8/create/data.sql
