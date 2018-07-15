@@ -1,0 +1,4 @@
+---
+ntp_servers:
+  - c.ntp.br
+  - b.ntp.br

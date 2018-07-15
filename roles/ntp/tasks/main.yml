@@ -1,0 +1,16 @@
+---
+- name: Instalacao NTP
+  yum:
+    name: ntp 
+    state: installed
+- name: Configuracao NTP 
+  template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+  notify:
+    - Reiniciar ntpd
+- name: Habilitar e iniciar ntpd servico
+  service: 
+    name: ntpd
+    enabled: yes
+    state: restarted
