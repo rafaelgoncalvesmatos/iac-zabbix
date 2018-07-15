@@ -1,0 +1,21 @@
+---
+    - name: Install Zabbix Agent
+      yum:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      with_items:
+        - zabbix-agent.x86_64
+      notify:
+        - restart zabbix-agent   
+      tags: agent 
+
+
+    - name: Copy File Auth Agent
+      template:
+        src: templates/zabbix_agentd.conf.j2
+        dest: /etc/zabbix/zabbix_agentd.conf
+        owner: zabbix
+        group: zabbix
+        mode: 0640
+      tags: agent
