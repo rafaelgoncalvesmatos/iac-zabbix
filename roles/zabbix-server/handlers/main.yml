@@ -1,0 +1,7 @@
+---
+# handlers file for zabbix-server
+- name: restart zabbix-server
+  systemd:
+    name: zabbix-server
+    state: started
+    enabled: yes    
