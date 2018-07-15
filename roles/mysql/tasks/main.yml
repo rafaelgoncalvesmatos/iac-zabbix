@@ -1,0 +1,30 @@
+---
+    - name: Install dependences Mysql
+      yum:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      with_items:
+        - http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+        - MySQL-python.x86_64
+
+    - name: Install Mysql Server
+      yum:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      with_items:
+        - mysql-server
+      notify:
+        - restart mysql  
+              
+    - name: Start Service
+      service:
+        name: "{{ item }}"
+        state: started
+      with_items:
+        - mysqld
+
+    - name: Import File Schemas
+      include: create-and-access.yml
+      
