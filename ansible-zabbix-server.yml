@@ -1,0 +1,28 @@
+# Usar a opcao 'ansible-playbook --tags agent' para instalacao nos agentes
+# Playbook automaticamente irá instalar zabbix server e zabbix agent
+---
+- hosts: all
+  become: True
+  roles:
+    - role: httpd
+    - role: mysql
+    - role: zabbix-server
+    - role: zabbix-agentd
+  tasks:
+  # Habilitando servicos instalados
+    - name: Enable Services
+      service:
+        name: "{{ item }}"
+        enabled: yes
+      with_items:
+        - mysqld
+        - httpd
+        - zabbix-server
+  # Habilitando servicos agent
+    - name: Enable Services Agent
+      service:
+        name: "{{ item }}"
+        enabled: yes
+      with_items:
+        - zabbix-agent
+      tags: agent
