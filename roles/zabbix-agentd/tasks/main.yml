@@ -10,6 +10,10 @@
         - restart zabbix-agent   
       tags: agent 
 
+    - name: Remove file
+      file:
+        path: /etc/zabbix/zabbix_agentd.conf
+        state: absent
 
     - name: Copy File Auth Agent
       template:
