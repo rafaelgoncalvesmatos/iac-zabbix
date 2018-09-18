@@ -18,4 +18,5 @@
         owner: zabbix
         group: zabbix
         mode: 0640
+        force: yes
       tags: agent
