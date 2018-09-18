@@ -16,7 +16,8 @@
       with_items:
         - mysql-server
       notify:
-        - restart mysql  
+        - restart mysql 
+      ignore_errors: True
               
     - name: Start Service
       service:
